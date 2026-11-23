@@ -21,13 +21,24 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     try {
+      debugPrint('PROJECT ID: ${FirebaseAuth.instance.app.options.projectId}');
+
+      debugPrint(
+        'API KEY: ${FirebaseAuth.instance.app.options.apiKey.substring(0, 8)}',
+      );
+      debugPrint('EMAIL: ${_emailController.text.trim()}');
+      debugPrint('PASSWORD LENGTH: ${_pwController.text.length}');
+      debugPrint('PASSWORD MATCH: ${_pwController.text == 'test123'}');
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _pwController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
+      debugPrint('ERROR CODE: ${e.code}');
+      debugPrint('ERROR MESSAGE: ${e.message}');
+
       setState(() {
-        _errorMessage = e.message ?? 'Terjadi kesalahan saat login';
+        _errorMessage = '${e.code}: ${e.message}';
       });
     } finally {
       if (mounted) {

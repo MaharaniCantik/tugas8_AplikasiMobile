@@ -1,65 +1,26 @@
 {
   "project_info": {
-    "project_number": "522233205374",
-    "project_id": "projectse1-df442",
-    "storage_bucket": "projectse1-df442.firebasestorage.app"
+    "project_number": "561405663068",
+    "project_id": "projectse1-af2b7",
+    "storage_bucket": "projectse1-af2b7.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:522233205374:android:a96fe90d8095b9ea663e2f",
-        "android_client_info": {
-          "package_name": "com.example.latihanfirebase"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "522233205374-gitjbtcaucthdr6lkgnpnhb9fh410678.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDw2VWRSr-H4PnHCwf922IdHfKThgKPU-c"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "522233205374-gitjbtcaucthdr6lkgnpnhb9fh410678.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:522233205374:android:939bb142ce203fd3663e2f",
+        "mobilesdk_app_id": "1:561405663068:android:c00ed6e97c5d72e1d65399",
         "android_client_info": {
           "package_name": "com.example.tugas_8"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "522233205374-gitjbtcaucthdr6lkgnpnhb9fh410678.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDw2VWRSr-H4PnHCwf922IdHfKThgKPU-c"
+          "current_key": "AIzaSyDSDdGGl7imipqzXgEXyLGGE0Y2L3JLaIE"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "522233205374-gitjbtcaucthdr6lkgnpnhb9fh410678.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
