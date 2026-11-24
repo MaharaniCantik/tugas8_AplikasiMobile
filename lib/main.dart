@@ -3,13 +3,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tugas_8/firebase_options.dart';
 import 'package:tugas_8/login_screen.dart';
+import 'package:tugas_8/notification_service.dart';
 import 'package:tugas_8/userinfo_screen.dart';
+import 'package:firebase_messaging/firebase_messaging.dart'; 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   runApp(const MyApp());
+  // Inisialisasi notifikasi (izin, token, listener)                  // BARU
+  await NotificationService.init();
 }
 
 class MyApp extends StatelessWidget {
@@ -19,6 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Firebase Auth',
+      navigatorKey: navigatorKey,
       theme: ThemeData(primarySwatch: Colors.purple),
       home: const AuthWrapper(),
     );
