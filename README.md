@@ -1,17 +1,53 @@
-# tugas_8
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:tugas_8/firebase_options.dart';
+import 'package:tugas_8/login_screen.dart';
+import 'package:tugas_8/notification_service.dart';
+import 'package:tugas_8/userinfo_screen.dart';
+import 'package:firebase_messaging/firebase_messaging.dart'; 
 
-A new Flutter project.
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  runApp(const MyApp());
+  // Inisialisasi notifikasi (izin, token, listener)                  // BARU
+  await NotificationService.init();
+}
 
-## Getting Started
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-This project is a starting point for a Flutter application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Firebase Auth',
+      navigatorKey: navigatorKey,
+      theme: ThemeData(primarySwatch: Colors.purple),
+      home: const AuthWrapper(),
+    );
+  }
+}
 
-A few resources to get you started if this is your first Flutter project:
+class AuthWrapper extends StatelessWidget {
+  const AuthWrapper({super.key});
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+        if (snapshot.hasData) {
+          return UserInfoScreen(user: snapshot.data!);
+        }
+        return const LoginScreen();
+      },
+    );
+  }
+}
